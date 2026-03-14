@@ -139,7 +139,7 @@ export default function App() {
 
       <audio 
         ref={audioRef}
-        src="./wedding-song.mp3"
+        src="/wedding-song.mp3"
         loop
       />
 
@@ -207,7 +207,7 @@ export default function App() {
                 <div className="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-24">
                   <div className="flex flex-col items-center">
                     <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6">
-                      <img src="./bride.jpg" alt="Bride" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/bride/400/400" }} referrerPolicy="no-referrer" />
+                      <img src="/bride.jpg" alt="Bride" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/bride/400/400" }} referrerPolicy="no-referrer" />
                     </div>
                     <h3 className="font-script text-4xl text-pink-700 mb-2">Aulia Ramadani</h3>
                     <p className="text-sm text-pink-600 font-medium">Putri dari Bapak ABD AZIZ & Ibu NABASIA</p>
@@ -218,7 +218,7 @@ export default function App() {
 
                   <div className="flex flex-col items-center">
                     <div className="w-48 h-48 rounded-full overflow-hidden border-4 border-white shadow-xl mb-6">
-                      <img src="./groom.jpg" alt="Groom" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/groom/400/400" }} referrerPolicy="no-referrer" />
+                      <img src="/groom.jpg" alt="Groom" className="w-full h-full object-cover" onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/groom/400/400" }} referrerPolicy="no-referrer" />
                     </div>
                     <h3 className="font-script text-4xl text-pink-700 mb-2">Jarwal</h3>
                     <p className="text-sm text-pink-600 font-medium">Putra dari Bapak H RAMLI & Ibu HJ HAWANG</p>
