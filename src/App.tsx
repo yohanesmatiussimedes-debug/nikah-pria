@@ -59,29 +59,7 @@ interface Wish {
 
 // --- Components ---
 
-const FloatingElement = ({ delay = 0, left = "50%", size = 24, type = "heart" }: { delay?: number, left?: string, size?: number, type?: "heart" | "leaf" | "flower" }) => (
-  <motion.div
-    initial={{ y: "110vh", opacity: 0, rotate: 0 }}
-    animate={{ 
-      y: "-10vh", 
-      opacity: [0, 0.6, 0.6, 0],
-      rotate: [0, 180, 360],
-      x: ["0%", "10%", "-10%", "0%"]
-    }}
-    transition={{ 
-      duration: 20, 
-      repeat: Infinity, 
-      delay,
-      ease: "linear"
-    }}
-    className="fixed pointer-events-none z-0 text-gold-400/30"
-    style={{ left }}
-  >
-    {type === "heart" && <Heart fill="currentColor" size={size} />}
-    {type === "leaf" && <Leaf size={size} />}
-    {type === "flower" && <Flower size={size} />}
-  </motion.div>
-);
+
 
 const WeddingLogo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
   const sizes = {
@@ -116,73 +94,22 @@ const WeddingLogo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
   );
 };
 
-const CornerFloral = () => (
-  <>
-    {/* Top Left */}
-    <div className="absolute top-0 left-0 w-48 h-48 md:w-96 md:h-96 pointer-events-none z-0 floral-corner-anim" style={{ '--rotate': '0deg' } as any}>
-      <div className="absolute inset-0 bg-gold-500/10 rounded-full blur-3xl" />
-      <img 
-        src="https://www.transparentpng.com/download/gold/gold-floral-corner-decoration-png-1.png" 
-        alt="floral corner" 
-        className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(194,149,70,0.5)]"
-        referrerPolicy="no-referrer"
-      />
-    </div>
-    {/* Top Right */}
-    <div className="absolute top-0 right-0 w-48 h-48 md:w-96 md:h-96 pointer-events-none z-0 floral-corner-anim" style={{ '--rotate': '90deg' } as any}>
-      <div className="absolute inset-0 bg-gold-500/10 rounded-full blur-3xl" />
-      <img 
-        src="https://www.transparentpng.com/download/gold/gold-floral-corner-decoration-png-1.png" 
-        alt="floral corner" 
-        className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(194,149,70,0.5)]"
-        referrerPolicy="no-referrer"
-      />
-    </div>
-    {/* Bottom Left */}
-    <div className="absolute bottom-0 left-0 w-48 h-48 md:w-96 md:h-96 pointer-events-none z-0 floral-corner-anim" style={{ '--rotate': '-90deg' } as any}>
-      <div className="absolute inset-0 bg-gold-500/10 rounded-full blur-3xl" />
-      <img 
-        src="https://www.transparentpng.com/download/gold/gold-floral-corner-decoration-png-1.png" 
-        alt="floral corner" 
-        className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(194,149,70,0.5)]"
-        referrerPolicy="no-referrer"
-      />
-    </div>
-    {/* Bottom Right */}
-    <div className="absolute bottom-0 right-0 w-48 h-48 md:w-96 md:h-96 pointer-events-none z-0 floral-corner-anim" style={{ '--rotate': '180deg' } as any}>
-      <div className="absolute inset-0 bg-gold-500/10 rounded-full blur-3xl" />
-      <img 
-        src="https://www.transparentpng.com/download/gold/gold-floral-corner-decoration-png-1.png" 
-        alt="floral corner" 
-        className="w-full h-full object-contain drop-shadow-[0_0_10px_rgba(194,149,70,0.5)]"
-        referrerPolicy="no-referrer"
-      />
-    </div>
-  </>
-);
 
-const GlobalBackground = () => (
-  <div className="fixed inset-0 z-[-1] pointer-events-none overflow-hidden">
+
+const PictureBackground = () => (
+  <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
     <img 
-      src="https://images.unsplash.com/photo-1528164344705-47542687000d?q=80&w=2092&auto=format&fit=crop" 
-      alt="Background" 
-      className="w-full h-full object-cover"
-      style={{ objectPosition: 'center 15%' }}
+      src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" 
+      alt="Wedding Background" 
+      className="w-full h-full object-cover opacity-20"
       referrerPolicy="no-referrer"
     />
-    {/* Semi-transparent overlay for readability */}
-    <div className="absolute inset-0 bg-white/75 backdrop-blur-[1px]" />
-    {/* Enhanced Background Texture Layers */}
-    <div className="absolute inset-0 opacity-[0.05] damask-pattern" />
-    <div className="absolute inset-0 opacity-[0.03] floral-bg-pattern" />
-    {/* Subtle vignette for luxury */}
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.03)_100%)]" />
+    <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/40 to-white/90" />
   </div>
 );
 
 const Section = ({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) => (
   <section id={id} className={`min-h-[90vh] flex flex-col items-center justify-center p-4 md:p-8 text-center relative overflow-hidden ${className}`}>
-    <CornerFloral />
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -196,14 +123,16 @@ const Section = ({ children, className = "", id = "" }: { children: React.ReactN
 );
 
 const RoyalDivider = () => (
-  <div className="flex items-center justify-center gap-4 my-12 opacity-50">
-    <div className="h-[1px] w-20 bg-gradient-to-r from-transparent to-gold-500" />
-    <div className="text-gold-500 flex gap-1">
-      <Sparkles size={12} className="animate-pulse" />
-      <Heart size={12} fill="currentColor" />
-      <Sparkles size={12} className="animate-pulse" />
+  <div className="flex items-center justify-center gap-4 my-24 md:my-32 opacity-80">
+    <div className="h-[1px] w-16 md:w-32 bg-gradient-to-r from-transparent via-gold-500 to-gold-300" />
+    <div className="text-gold-500 flex items-center gap-3">
+      <Sparkles size={14} className="animate-pulse" />
+      <div className="w-8 h-8 rounded-full border border-gold-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(194,149,70,0.3)]">
+        <Heart size={14} fill="currentColor" className="text-gold-500" />
+      </div>
+      <Sparkles size={14} className="animate-pulse" />
     </div>
-    <div className="h-[1px] w-20 bg-gradient-to-l from-transparent to-gold-500" />
+    <div className="h-[1px] w-16 md:w-32 bg-gradient-to-l from-transparent via-gold-500 to-gold-300" />
   </div>
 );
 
@@ -224,99 +153,17 @@ const RoyalOrnament = () => (
   </div>
 );
 
-const FloatingGoldFlakes = () => (
-  <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    {Array.from({ length: 25 }).map((_, i) => (
-      <motion.div
-        key={`flake-${i}`}
-        initial={{ 
-          y: -100, 
-          x: Math.random() * 100 + "vw",
-          rotate: 0,
-          opacity: 0
-        }}
-        animate={{ 
-          y: "110vh",
-          x: (Math.random() * 100 - 50) + "vw",
-          rotate: 360,
-          opacity: [0, 0.4, 0.4, 0]
-        }}
-        transition={{ 
-          duration: 15 + Math.random() * 20,
-          repeat: Infinity,
-          delay: Math.random() * 10,
-          ease: "linear"
-        }}
-        className="absolute w-1 h-1 bg-gold-400 rounded-full blur-[1px]"
-      />
-    ))}
-  </div>
-);
+
 
 const CountdownItem = ({ value, label }: { value: number, label: string }) => (
   <div className="flex flex-col items-center mx-3 sm:mx-6 group">
-    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500">{value}</div>
+    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500 drop-shadow-[0_0_15px_rgba(194,149,70,0.3)]">{value}</div>
     <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-3" />
     <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-gold-400 font-bold">{label}</span>
   </div>
 );
 
-const AnimatedPhotoBackground = () => {
-  return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden opacity-40">
-      {/* Sparkle Background */}
-      {Array.from({ length: 50 }).map((_, i) => (
-        <motion.div
-          key={`sparkle-${i}`}
-          initial={{ 
-            opacity: 0, 
-            scale: 0,
-            x: `${Math.random() * 100}vw`,
-            y: `${Math.random() * 100}vh`
-          }}
-          animate={{ 
-            opacity: [0, 0.8, 0],
-            scale: [0, 1.2, 0],
-          }}
-          transition={{ 
-            duration: 3 + Math.random() * 5,
-            repeat: Infinity,
-            delay: Math.random() * 5
-          }}
-          className="absolute text-gold-300"
-        >
-          <Sparkles size={6 + Math.random() * 10} />
-        </motion.div>
-      ))}
 
-      {/* Floating Gold Dust Particles */}
-      <FloatingGoldFlakes />
-
-      {/* Rose Gold Dust Particles */}
-      {Array.from({ length: 40 }).map((_, i) => (
-        <motion.div
-          key={`dust-${i}`}
-          initial={{ 
-            x: `${Math.random() * 100}vw`,
-            y: `${Math.random() * 100}vh`,
-            opacity: 0
-          }}
-          animate={{ 
-            y: [null, Math.random() * 100 + "vh"],
-            x: [null, Math.random() * 100 + "vw"],
-            opacity: [0, 0.4, 0]
-          }}
-          transition={{ 
-            duration: 10 + Math.random() * 15,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute w-1 h-1 bg-rosegold-300 rounded-full blur-[2px]"
-        />
-      ))}
-    </div>
-  );
-};
 
 const MusicPlayer = ({ isPlaying, setIsPlaying }: { isPlaying: boolean, setIsPlaying: (val: boolean) => void }) => {
   return (
@@ -469,40 +316,17 @@ export default function App() {
   };
 
   return (
-    <div className="relative bg-transparent min-h-screen selection:bg-gold-500/20 selection:text-royal-text overflow-x-hidden">
-      <GlobalBackground />
-      {/* Luxurious Animated Background */}
-      {isOpen && <AnimatedPhotoBackground />}
-      {isOpen && <FloatingGoldFlakes />}
-
-      {/* Background Elements */}
-      <div className="fixed inset-0 pointer-events-none opacity-30 z-0">
-        <div className="absolute top-0 left-0 w-64 h-64 bg-gold-200 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-rosegold-100 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
-      </div>
-
-      {/* Floating Decorations */}
-      {isOpen && (
-        <div className="fixed inset-0 pointer-events-none z-10 overflow-hidden">
-          <FloatingElement delay={0} left="5%" size={20} type="leaf" />
-          <FloatingElement delay={3} left="25%" size={32} type="flower" />
-          <FloatingElement delay={7} left="45%" size={18} type="heart" />
-          <FloatingElement delay={2} left="65%" size={28} type="leaf" />
-          <FloatingElement delay={5} left="85%" size={22} type="flower" />
-          <FloatingElement delay={9} left="15%" size={24} type="heart" />
-          <FloatingElement delay={1} left="35%" size={26} type="flower" />
-          <FloatingElement delay={4} left="55%" size={20} type="flower" />
-          <FloatingElement delay={6} left="75%" size={30} type="flower" />
-          <FloatingElement delay={8} left="95%" size={18} type="leaf" />
-          <FloatingElement delay={10} left="15%" size={22} type="heart" />
-          <FloatingElement delay={12} left="45%" size={28} type="flower" />
-          <FloatingElement delay={14} left="65%" size={24} type="leaf" />
-          <FloatingElement delay={16} left="85%" size={20} type="heart" />
-        </div>
-      )}
-
+    <div className="relative bg-white min-h-screen selection:bg-gold-500/20 selection:text-royal-text overflow-x-hidden">
+      <PictureBackground />
       {/* Music Toggle */}
       {isOpen && <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />}
+
+      {/* Fixed Watermark */}
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-[200] pointer-events-none opacity-20">
+        <p className="text-[8px] md:text-[10px] uppercase tracking-[0.5em] text-gold-600 font-black font-sans whitespace-nowrap">
+          GIMA HOSTING INVITATION
+        </p>
+      </div>
 
       <audio 
         ref={audioRef}
@@ -582,9 +406,15 @@ export default function App() {
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center text-royal-text p-6 overflow-hidden"
           >
-            <CornerFloral />
+            <PictureBackground />
             <div className="absolute top-12 left-1/2 -translate-x-1/2 z-20">
               <WeddingLogo size="sm" />
+            </div>
+            {/* Watermark on Cover */}
+            <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 opacity-30">
+              <p className="text-[8px] md:text-[10px] uppercase tracking-[0.5em] text-gold-500 font-black font-sans">
+                GIMA HOSTING INVITATION
+              </p>
             </div>
             {/* Elegant Background for Cover */}
             <div className="absolute inset-0 opacity-20 pointer-events-none">
@@ -682,6 +512,7 @@ export default function App() {
               <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-16 md:mb-24 relative z-10">
                 <Bird className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
                 <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Invitation</h2>
+                <RoyalOrnament />
                 <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Undangan Suci</p>
               </div>
               <div className="max-w-4xl glass-card royal-border p-8 md:p-24 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
@@ -846,6 +677,7 @@ export default function App() {
               <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-16 md:mb-24 relative z-10">
                 <Info className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
                 <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Information</h2>
+                <RoyalOrnament />
                 <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Informasi Tambahan</p>
               </div>
               <div className="grid md:grid-cols-2 gap-12 max-w-5xl w-full relative z-10">
@@ -906,6 +738,7 @@ export default function App() {
                 <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-16 md:mb-20">
                   <Camera className="w-10 h-10 md:w-12 md:h-12 text-gold-400 mb-6 md:mb-8 animate-pulse" />
                   <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Our Gallery</h2>
+                  <RoyalOrnament />
                   <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Momen Indah Kami</p>
                 </div>
                 
@@ -1025,6 +858,7 @@ export default function App() {
                 <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-16 md:mb-20">
                   <Clock className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
                   <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Countdown</h2>
+                  <RoyalOrnament />
                   <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Menuju Hari Bahagia</p>
                 </div>
                 <div className="flex justify-center items-center gap-6 md:gap-12">
@@ -1047,8 +881,10 @@ export default function App() {
                 className="max-w-5xl w-full text-center"
               >
                 <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-12 md:mb-16">
-                  <div className="wax-seal" />
+                  <div className="wax-seal mb-4" />
+                  <Flower className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
                   <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Guest Book</h2>
+                  <RoyalOrnament />
                   <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Ucapan & Doa Restu</p>
                 </div>
                 <p className="font-body text-lg md:text-2xl text-royal-text/70 mb-16 md:mb-20 italic">Berikan doa restu Anda untuk perjalanan suci kami</p>
@@ -1062,7 +898,7 @@ export default function App() {
                         placeholder="Yth. Bapak/Ibu/Saudara/i" 
                         value={wishName}
                         onChange={(e) => setWishName(e.target.value)}
-                        className="w-full bg-transparent border-b border-gold-500/30 py-4 focus:border-gold-400 outline-none transition-all font-body text-xl text-royal-text placeholder:text-gold-500/20"
+                        className="w-full bg-gold-500/5 border-b-2 border-gold-500/30 py-4 px-4 focus:border-gold-400 focus:bg-gold-500/10 outline-none transition-all font-body text-xl text-royal-text placeholder:text-gold-500/30 rounded-t-lg"
                       />
                     </div>
                     <div className="space-y-3">
@@ -1072,7 +908,7 @@ export default function App() {
                         rows={5}
                         value={wishMessage}
                         onChange={(e) => setWishMessage(e.target.value)}
-                        className="w-full bg-transparent border-b border-gold-500/30 py-4 focus:border-gold-400 outline-none transition-all font-body text-xl text-royal-text resize-none placeholder:text-gold-500/20"
+                        className="w-full bg-gold-500/5 border-b-2 border-gold-500/30 py-4 px-4 focus:border-gold-400 focus:bg-gold-500/10 outline-none transition-all font-body text-xl text-royal-text resize-none placeholder:text-gold-500/30 rounded-t-lg"
                       />
                     </div>
                     <div className="space-y-3">
@@ -1249,6 +1085,11 @@ export default function App() {
                 <p className="font-sans text-gold-500 text-xs tracking-[0.8em] uppercase font-black">Terima Kasih Atas Doa Restu Anda</p>
                 <div className="mt-20 opacity-30">
                   <RoyalOrnament />
+                </div>
+                <div className="mt-24 pb-8">
+                  <p className="text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold-500/40 font-black font-sans">
+                    GIMA HOSTING INVITATION
+                  </p>
                 </div>
               </div>
             </footer>
