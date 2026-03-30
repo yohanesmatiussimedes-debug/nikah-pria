@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, Component } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Heart, 
@@ -36,7 +36,7 @@ import {
   X,
   Share2
 } from 'lucide-react';
-import { db } from './firebase';
+import { db, auth } from './firebase';
 import { 
   collection, 
   addDoc, 
@@ -44,8 +44,113 @@ import {
   query, 
   orderBy, 
   serverTimestamp,
-  Timestamp 
+  Timestamp,
+  getDocFromServer,
+  doc
 } from 'firebase/firestore';
+
+// --- Error Handling ---
+
+enum OperationType {
+  CREATE = 'create',
+  UPDATE = 'update',
+  DELETE = 'delete',
+  LIST = 'list',
+  GET = 'get',
+  WRITE = 'write',
+}
+
+interface FirestoreErrorInfo {
+  error: string;
+  operationType: OperationType;
+  path: string | null;
+  authInfo: {
+    userId: string | undefined;
+    email: string | null | undefined;
+    emailVerified: boolean | undefined;
+    isAnonymous: boolean | undefined;
+    tenantId: string | null | undefined;
+    providerInfo: {
+      providerId: string;
+      displayName: string | null;
+      email: string | null;
+      photoUrl: string | null;
+    }[];
+  }
+}
+
+function handleFirestoreError(error: unknown, operationType: OperationType, path: string | null) {
+  const errInfo: FirestoreErrorInfo = {
+    error: error instanceof Error ? error.message : String(error),
+    authInfo: {
+      userId: auth.currentUser?.uid,
+      email: auth.currentUser?.email,
+      emailVerified: auth.currentUser?.emailVerified,
+      isAnonymous: auth.currentUser?.isAnonymous,
+      tenantId: auth.currentUser?.tenantId,
+      providerInfo: auth.currentUser?.providerData.map(provider => ({
+        providerId: provider.providerId,
+        displayName: provider.displayName,
+        email: provider.email,
+        photoUrl: provider.photoURL
+      })) || []
+    },
+    operationType,
+    path
+  }
+  console.error('Firestore Error: ', JSON.stringify(errInfo));
+  throw new Error(JSON.stringify(errInfo));
+}
+
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: Error | null;
+}
+
+class ErrorBoundary extends Component<any, any> {
+  constructor(props: any) {
+    super(props);
+    (this as any).state = { hasError: false, error: null };
+  }
+
+  static getDerivedStateFromError(error: Error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    const self = this as any;
+    if (self.state.hasError) {
+      let errorMessage = "Something went wrong.";
+      try {
+        const parsed = JSON.parse(self.state.error?.message || "{}");
+        if (parsed.error) errorMessage = `Firebase Error: ${parsed.error}`;
+      } catch {
+        errorMessage = self.state.error?.message || errorMessage;
+      }
+
+      return (
+        <div className="min-h-screen flex items-center justify-center bg-royal-bg p-4">
+          <div className="glass-card royal-border p-8 max-w-md text-center">
+            <AlertCircle className="w-16 h-16 text-red-500 mx-auto mb-6" />
+            <h2 className="text-2xl font-display gold-text-shimmer mb-4">Application Error</h2>
+            <p className="text-royal-text/70 mb-8 italic">{errorMessage}</p>
+            <button 
+              onClick={() => window.location.reload()}
+              className="px-8 py-3 bg-gold-600 text-royal-bg uppercase tracking-widest text-[10px] font-black"
+            >
+              Reload Application
+            </button>
+          </div>
+        </div>
+      );
+    }
+    return self.props.children;
+  }
+}
 
 // --- Types ---
 
@@ -143,7 +248,6 @@ const RoyalOrnament = () => (
       <div className="h-[0.5px] w-full bg-gradient-to-r from-transparent via-gold-600 to-gold-400 opacity-50" />
     </div>
     <div className="relative flex items-center justify-center">
-      <div className="absolute w-10 h-10 bg-gold-500/10 rounded-full blur-xl animate-pulse" />
       <Sparkles className="text-gold-400 relative z-10" size={24} />
     </div>
     <div className="flex-1 flex flex-col gap-1">
@@ -237,6 +341,17 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    async function testConnection() {
+      try {
+        await getDocFromServer(doc(db, 'test', 'connection'));
+      } catch (error) {
+        if (error instanceof Error && error.message.includes('the client is offline')) {
+          console.error("Please check your Firebase configuration. The client is offline.");
+        }
+      }
+    }
+    testConnection();
+
     const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const wishesData: Wish[] = [];
@@ -245,7 +360,7 @@ export default function App() {
       });
       setWishes(wishesData);
     }, (error) => {
-      console.error("Firestore Error:", error);
+      handleFirestoreError(error, OperationType.LIST, 'wishes');
     });
 
     return () => unsubscribe();
@@ -265,7 +380,7 @@ export default function App() {
         setWishMessage('');
         setAttendance('');
       } catch (error) {
-        console.error("Error adding wish: ", error);
+        handleFirestoreError(error, OperationType.CREATE, 'wishes');
       } finally {
         setIsSending(false);
       }
@@ -316,7 +431,8 @@ export default function App() {
   };
 
   return (
-    <div className="relative bg-white min-h-screen selection:bg-gold-500/20 selection:text-royal-text overflow-x-hidden">
+    <ErrorBoundary>
+      <div className="relative bg-white min-h-screen selection:bg-gold-500/20 selection:text-royal-text overflow-x-hidden">
       <PictureBackground />
       {/* Music Toggle */}
       {isOpen && <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />}
@@ -359,13 +475,13 @@ export default function App() {
                   ease: "easeInOut",
                   delay: Math.random() * 1.5
                 }}
-                className="absolute text-gold-200 drop-shadow-[0_0_20px_rgba(212,175,55,0.9)]"
+                className="absolute text-gold-300/80 drop-shadow-[0_5px_10px_rgba(212,175,55,0.3)]"
               >
-                <Bird size={30 + Math.random() * 50} style={{ transform: i % 2 === 0 ? 'none' : 'scaleX(-1)' }} />
-                <motion.div
-                  animate={{ scale: [1, 2, 1], opacity: [0, 0.8, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="absolute inset-0 bg-gold-100 rounded-full blur-2xl -z-10"
+                <Bird 
+                  size={20 + Math.random() * 40} 
+                  fill="currentColor" 
+                  stroke="none"
+                  style={{ transform: i % 2 === 0 ? 'none' : 'scaleX(-1)' }} 
                 />
               </motion.div>
             ))}
@@ -519,7 +635,7 @@ export default function App() {
             <RoyalDivider />
             <Section>
               <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-16 md:mb-24 relative z-10">
-                <Bird className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
+                <Bird className="w-10 h-10 md:w-12 md:h-12 text-gold-500" fill="currentColor" stroke="none" />
                 <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Invitation</h2>
                 <RoyalOrnament />
                 <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Undangan Suci</p>
@@ -1123,5 +1239,6 @@ export default function App() {
         }
       `}</style>
     </div>
+    </ErrorBoundary>
   );
 }

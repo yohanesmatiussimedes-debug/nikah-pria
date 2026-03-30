@@ -13,6 +13,11 @@
           "type": "string",
           "description": "The message content"
         },
+        "attendance": {
+          "type": "string",
+          "enum": ["hadir", "tidak_hadir"],
+          "description": "Attendance status"
+        },
         "createdAt": {
           "type": "string",
           "format": "date-time",

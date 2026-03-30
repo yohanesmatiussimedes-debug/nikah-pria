@@ -11,6 +11,7 @@ service cloud.firestore {
     // Fields:
     //   - name: string (required, 1-100 chars)
     //   - message: string (required, 1-1000 chars)
+    //   - attendance: string (required, 'hadir' or 'tidak_hadir')
     //   - createdAt: timestamp (required)
     //
     // ===============================================================
@@ -20,11 +21,18 @@ service cloud.firestore {
       return request.auth != null;
     }
 
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "https.https.https.https.error@gmail.com" && request.auth.token.email_verified == true));
+    }
+
     function isValidWish(data) {
-      return data.keys().hasAll(['name', 'message', 'createdAt']) &&
-             data.keys().hasOnly(['name', 'message', 'createdAt']) &&
+      return data.keys().hasAll(['name', 'message', 'attendance', 'createdAt']) &&
+             data.keys().hasOnly(['name', 'message', 'attendance', 'createdAt']) &&
              data.name is string && data.name.size() > 0 && data.name.size() <= 100 &&
              data.message is string && data.message.size() > 0 && data.message.size() <= 1000 &&
+             data.attendance in ['hadir', 'tidak_hadir'] &&
              data.createdAt is timestamp;
     }
 
@@ -35,8 +43,16 @@ service cloud.firestore {
       // Allow anyone to create a wish if it's valid
       allow create: if isValidWish(request.resource.data);
       
-      // No updates or deletes allowed for guests
-      allow update, delete: if false;
+      // Allow admin to delete wishes
+      allow delete: if isAdmin();
+      
+      // No updates allowed
+      allow update: if false;
+    }
+
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin();
     }
 
     match /{path=**} {
