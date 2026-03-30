@@ -127,7 +127,7 @@ const RoyalDivider = () => (
     <div className="h-[1px] w-16 md:w-32 bg-gradient-to-r from-transparent via-gold-500 to-gold-300" />
     <div className="text-gold-500 flex items-center gap-3">
       <Sparkles size={14} className="animate-pulse" />
-      <div className="w-8 h-8 rounded-full border border-gold-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(194,149,70,0.3)]">
+      <div className="w-8 h-8 rounded-full border border-gold-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(248,59,101,0.3)]">
         <Heart size={14} fill="currentColor" className="text-gold-500" />
       </div>
       <Sparkles size={14} className="animate-pulse" />
@@ -157,7 +157,7 @@ const RoyalOrnament = () => (
 
 const CountdownItem = ({ value, label }: { value: number, label: string }) => (
   <div className="flex flex-col items-center mx-3 sm:mx-6 group">
-    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500 drop-shadow-[0_0_15px_rgba(194,149,70,0.3)]">{value}</div>
+    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500 drop-shadow-[0_0_15px_rgba(248,59,101,0.3)]">{value}</div>
     <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-3" />
     <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-gold-400 font-bold">{label}</span>
   </div>
@@ -406,7 +406,16 @@ export default function App() {
             transition={{ duration: 1.5, ease: "easeInOut" }}
             className="fixed inset-0 z-[100] flex flex-col items-center justify-center text-royal-text p-6 overflow-hidden"
           >
-            <PictureBackground />
+            <div className="absolute inset-0 z-0">
+              <img 
+                src="/hero.jpg" 
+                alt="Aulia & Jarwal" 
+                className="w-full h-full object-cover"
+                onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" }}
+                referrerPolicy="no-referrer"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60" />
+            </div>
             <div className="absolute top-12 left-1/2 -translate-x-1/2 z-20">
               <WeddingLogo size="sm" />
             </div>
@@ -427,7 +436,7 @@ export default function App() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 1 }}
-              className="relative z-10 flex flex-col items-center text-center w-full max-w-[90vw]"
+              className="relative z-10 flex flex-col items-center text-center w-full max-w-[90vw] text-white"
             >
               <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold-400 mb-6 md:mb-8 font-sans font-semibold">The Wedding Celebration of</span>
               
@@ -441,14 +450,14 @@ export default function App() {
                 Sabtu, 4 April 2026
               </p>
 
-              <div className="mb-10 md:mb-12 p-6 md:p-8 border border-gold-500/30 rounded-none bg-white/40 backdrop-blur-xl shadow-[0_0_30px_rgba(194,149,70,0.2)] relative overflow-hidden group w-full max-w-md">
-                <div className="absolute inset-0 bg-gradient-to-br from-gold-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-gold-500 mb-3 font-bold">Kepada Yth. Bapak/Ibu/Saudara/i</p>
-                <p className="text-2xl md:text-3xl font-serif italic text-royal-text gold-text-shimmer">{guestName}</p>
+              <div className="mb-10 md:mb-12 p-6 md:p-8 border border-white/30 rounded-none bg-black/20 backdrop-blur-md shadow-[0_0_30px_rgba(248,59,101,0.2)] relative overflow-hidden group w-full max-w-md">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <p className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/80 mb-3 font-bold">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+                <p className="text-2xl md:text-3xl font-serif italic text-white gold-text-shimmer">{guestName}</p>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(194,149,70,0.4)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(248,59,101,0.4)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleOpen}
                 className="group relative px-10 py-4 md:px-12 md:py-5 bg-gold-600 text-royal-bg uppercase tracking-[0.5em] text-[9px] md:text-[10px] font-black transition-all duration-500 overflow-hidden shadow-2xl"
@@ -482,7 +491,7 @@ export default function App() {
               >
                 <div className="absolute -inset-12 border border-gold-500/20 rounded-full animate-spin-slow" />
                 <div className="absolute -inset-6 border border-gold-400/10 rounded-full animate-reverse-spin-slow" />
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold-500/50 shadow-[0_0_60px_rgba(194,149,70,0.3)] relative z-10 bg-white">
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold-500/50 shadow-[0_0_60px_rgba(248,59,101,0.3)] relative z-10 bg-white">
                   <img 
                     src="/hero.jpg" 
                     alt="Aulia & Jarwal" 
@@ -579,7 +588,7 @@ export default function App() {
                   <div className="grid md:grid-cols-2 gap-12 md:gap-24">
                     <div className="space-y-8 md:space-y-10">
                       <div className="flex flex-col items-center">
-                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(194,149,70,0.2)] border border-gold-500/30">
+                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(248,59,101,0.2)] border border-gold-500/30">
                           <Calendar className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
                         <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Akad Nikah</h3>
@@ -594,7 +603,7 @@ export default function App() {
 
                     <div className="space-y-8 md:space-y-10">
                       <div className="flex flex-col items-center">
-                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(194,149,70,0.2)] border border-gold-500/30">
+                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(248,59,101,0.2)] border border-gold-500/30">
                           <Heart className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
                         <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Resepsi</h3>
@@ -615,7 +624,7 @@ export default function App() {
                       BTN PEPABRI SUDIANG BLOK E12/7
                     </p>
                     <motion.button 
-                      whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(194,149,70,0.4)" }}
+                      whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(248,59,101,0.4)" }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => window.open('https://maps.app.goo.gl/DavZrebYAX4FPHXN6?g_st=awb', '_blank')}
                       className="px-12 py-5 bg-gold-600 text-royal-bg rounded-none font-display tracking-[0.5em] uppercase text-[10px] font-black shadow-2xl flex items-center gap-4 hover:bg-gold-500 transition-all"
@@ -827,10 +836,10 @@ export default function App() {
                     { year: "2026", title: "Lamaran", desc: "Di hadapan keluarga, kami mengikat janji suci untuk melangkah ke jenjang yang lebih serius, menuju ibadah terlama kami." }
                   ].map((story, i) => (
                     <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                      <div className="flex items-center justify-center w-14 h-14 rounded-full border-4 border-royal-bg bg-gold-600 text-royal-bg shadow-[0_0_20px_rgba(194,149,70,0.5)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125 group-hover:bg-gold-400">
+                      <div className="flex items-center justify-center w-14 h-14 rounded-full border-4 border-royal-bg bg-gold-600 text-royal-bg shadow-[0_0_20px_rgba(248,59,101,0.5)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125 group-hover:bg-gold-400">
                         <Heart size={24} fill="currentColor" />
                       </div>
-                      <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-4rem)] p-10 rounded-[2.5rem] glass-card royal-border text-left group-hover:shadow-[0_0_50px_rgba(194,149,70,0.2)] transition-all duration-500">
+                      <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-4rem)] p-10 rounded-[2.5rem] glass-card royal-border text-left group-hover:shadow-[0_0_50px_rgba(248,59,101,0.2)] transition-all duration-500">
                         <div className="flex items-center justify-between space-x-4 mb-6">
                           <div className="font-display font-black text-gold-800 text-2xl tracking-widest uppercase">{story.title}</div>
                           <time className="font-serif italic text-gold-500 font-black text-xl">{story.year}</time>
@@ -929,7 +938,7 @@ export default function App() {
                       </div>
                     </div>
                     <motion.button 
-                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(194,149,70,0.3)" }}
+                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(248,59,101,0.3)" }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleSendWish}
                       disabled={isSending}
@@ -1106,11 +1115,11 @@ export default function App() {
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #e2d1c3;
+          background: #ffccd5;
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #b76e79;
+          background: #f83b65;
         }
       `}</style>
     </div>

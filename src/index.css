@@ -8,16 +8,16 @@
   --font-body: "Cormorant Garamond", serif;
   --font-display: "Cinzel", serif;
   
-  --color-gold-50: #fbf9f2;
-  --color-gold-100: #f5f0db;
-  --color-gold-200: #eadfb7;
-  --color-gold-300: #dcc88a;
-  --color-gold-400: #cdac62;
-  --color-gold-500: #c29546;
-  --color-gold-600: #a97938;
-  --color-gold-700: #8d6031;
-  --color-gold-800: #754f2c;
-  --color-gold-900: #634328;
+  --color-gold-50: #fff5f7;
+  --color-gold-100: #ffe4e9;
+  --color-gold-200: #ffccd5;
+  --color-gold-300: #ffa3b1;
+  --color-gold-400: #ff708d;
+  --color-gold-500: #f83b65;
+  --color-gold-600: #e61e50;
+  --color-gold-700: #c21340;
+  --color-gold-800: #a11238;
+  --color-gold-900: #861433;
 
   --color-rosegold-50: #fdf8f8;
   --color-rosegold-100: #f9ecec;
@@ -83,7 +83,7 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(248, 59, 101, 0.2), transparent);
   background-size: 200% 100%;
   @apply animate-shimmer;
 }
