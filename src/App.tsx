@@ -185,9 +185,9 @@ const WeddingLogo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
       {/* Main Circle */}
       <div className="absolute inset-4 bg-gradient-to-br from-gold-50 to-white rounded-full border-2 border-gold-200 flex items-center justify-center shadow-lg">
         <div className="flex items-center gap-1 font-display font-black gold-text-shimmer">
-          <span>A</span>
-          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-gold-500 animate-pulse" />
           <span>J</span>
+          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-gold-500 animate-pulse" />
+          <span>A</span>
         </div>
       </div>
       
@@ -491,7 +491,7 @@ export default function App() {
               <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold-400 mb-6 md:mb-8 font-sans font-semibold">The Wedding Celebration of</span>
               
               <h1 className="text-4xl md:text-7xl font-display mb-6 tracking-widest gold-text-shimmer font-black">
-                AULIA <span className="text-2xl md:text-4xl block md:inline text-gold-500 font-serif italic my-4 md:my-0 md:mx-4">&</span> JARWAL
+                JARWAL <span className="text-2xl md:text-4xl block md:inline text-gold-500 font-serif italic my-4 md:my-0 md:mx-4">&</span> AULIA
               </h1>
 
               <div className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent my-8 md:my-10" />
@@ -554,7 +554,7 @@ export default function App() {
 
               <span className="text-[10px] md:text-xs uppercase tracking-[0.8em] text-gold-500 mb-6 md:mb-8 font-sans font-black">The Royal Wedding Celebration of</span>
               <h2 className="text-4xl md:text-8xl font-display gold-text-shimmer mb-8 md:mb-10 tracking-tighter font-black">
-                Aulia <span className="text-2xl md:text-5xl font-serif italic text-gold-500">&</span> Jarwal
+                Jarwal <span className="text-2xl md:text-5xl font-serif italic text-gold-500">&</span> Aulia
               </h2>
               
               <RoyalOrnament />
@@ -581,13 +581,13 @@ export default function App() {
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center my-16 md:my-20">
-                  <div className="space-y-4 md:space-y-6">
-                    <h4 className="text-4xl md:text-6xl font-display gold-text-shimmer font-black tracking-tight">Aulia Ramadani</h4>
-                    <p className="text-[9px] md:text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
-                    <p className="text-lg md:text-xl font-serif text-royal-text italic font-bold">Bapak ABD AZIZ & Ibu NABASIA</p>
+                  <div className="space-y-6">
+                    <h4 className="text-6xl md:text-8xl font-display gold-text-shimmer font-black tracking-tight">Jarwal</h4>
+                    <p className="text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putra bungsu dari</p>
+                    <p className="text-xl font-serif text-royal-text italic font-bold">Bapak H RAMLI & Ibu HJ HAWANG</p>
                     <motion.a 
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      href="https://www.instagram.com/dedeaul_?igsh=MWZmaDE4eG1oNjBrNQ==" 
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      href="https://www.instagram.com/jarwall_09?igsh=MWVubnI2MW1scTUzMA==" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-600 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-6 border border-gold-200"
@@ -596,13 +596,13 @@ export default function App() {
                     </motion.a>
                   </div>
                   <div className="text-6xl font-script text-gold-500">&</div>
-                  <div className="space-y-6">
-                    <h4 className="text-6xl md:text-8xl font-display gold-text-shimmer font-black tracking-tight">Jarwal</h4>
-                    <p className="text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putra bungsu dari</p>
-                    <p className="text-xl font-serif text-royal-text italic font-bold">Bapak H RAMLI & Ibu HJ HAWANG</p>
+                  <div className="space-y-4 md:space-y-6">
+                    <h4 className="text-4xl md:text-6xl font-display gold-text-shimmer font-black tracking-tight">Aulia Ramadani</h4>
+                    <p className="text-[9px] md:text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
+                    <p className="text-lg md:text-xl font-serif text-royal-text italic font-bold">Bapak ABD AZIZ & Ibu NABASIA</p>
                     <motion.a 
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                      href="https://www.instagram.com/jarwall_09?igsh=MWVubnI2MW1scTUzMA==" 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      href="https://www.instagram.com/dedeaul_?igsh=MWZmaDE4eG1oNjBrNQ==" 
                       target="_blank" 
                       rel="noopener noreferrer" 
                       className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-600 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-6 border border-gold-200"
@@ -646,7 +646,7 @@ export default function App() {
                         <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
-                          <span>14.00 WITA - Selesai</span>
+                          <span>10.00 WITA - Selesai</span>
                         </div>
                       </div>
                     </div>
@@ -1124,7 +1124,7 @@ export default function App() {
                 <div className="mb-16">
                   <WeddingLogo size="lg" />
                 </div>
-                <h2 className="font-display text-5xl md:text-7xl gold-text-shimmer mb-10 tracking-[0.5em] uppercase font-black">Aulia & Jarwal</h2>
+                <h2 className="font-display text-5xl md:text-7xl gold-text-shimmer mb-10 tracking-[0.5em] uppercase font-black">Jarwal & Aulia</h2>
                 <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-600 to-transparent mx-auto mb-12" />
                 <p className="font-sans text-gold-500 text-xs tracking-[0.8em] uppercase font-black">Terima Kasih Atas Doa Restu Anda</p>
                 <div className="mt-24 opacity-40">
