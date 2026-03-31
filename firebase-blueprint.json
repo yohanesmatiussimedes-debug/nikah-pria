@@ -2,35 +2,39 @@
   "entities": {
     "Wish": {
       "title": "Wish",
-      "description": "A wedding wish/message from a guest",
+      "description": "A guestbook entry with a name, message, and attendance status.",
       "type": "object",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Guest name"
+          "description": "The name of the guest."
         },
         "message": {
           "type": "string",
-          "description": "The message content"
+          "description": "The message or wish from the guest."
         },
         "attendance": {
           "type": "string",
           "enum": ["hadir", "tidak_hadir"],
-          "description": "Attendance status"
+          "description": "The guest's attendance status."
         },
         "createdAt": {
           "type": "string",
           "format": "date-time",
-          "description": "Timestamp of the wish"
+          "description": "The time the wish was created."
         }
       },
-      "required": ["name", "message", "createdAt"]
+      "required": ["name", "message", "attendance", "createdAt"]
     }
   },
   "firestore": {
-    "wishes": {
+    "/wishes/{wishId}": {
       "schema": "Wish",
-      "description": "Collection of wedding wishes"
+      "description": "Collection of guestbook wishes."
+    },
+    "/whises2/{wishId}": {
+      "schema": "Wish",
+      "description": "New collection of guestbook wishes."
     }
   }
 }

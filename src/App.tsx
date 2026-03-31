@@ -185,9 +185,9 @@ const WeddingLogo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
       {/* Main Circle */}
       <div className="absolute inset-4 bg-gradient-to-br from-gold-100 to-white rounded-full border-2 border-gold-500/50 flex items-center justify-center shadow-xl">
         <div className="flex items-center gap-1 font-display font-black gold-text-shimmer">
-          <span>A</span>
-          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-rosegold-500 animate-pulse" />
           <span>J</span>
+          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-rosegold-500 animate-pulse" />
+          <span>A</span>
         </div>
       </div>
       
@@ -206,21 +206,21 @@ const PictureBackground = () => (
     <img 
       src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" 
       alt="Wedding Background" 
-      className="w-full h-full object-cover opacity-20"
+      className="w-full h-full object-cover opacity-10"
       referrerPolicy="no-referrer"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/40 to-white/90" />
+    <div className="absolute inset-0 bg-gradient-to-b from-royal-bg via-transparent to-royal-bg" />
   </div>
 );
 
 const Section = ({ children, className = "", id = "" }: { children: React.ReactNode, className?: string, id?: string }) => (
-  <section id={id} className={`min-h-[90vh] flex flex-col items-center justify-center p-4 md:p-8 text-center relative overflow-hidden ${className}`}>
+  <section id={id} className={`min-h-[90vh] flex flex-col items-center justify-center p-6 md:p-12 text-center relative overflow-hidden ${className}`}>
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full max-w-6xl flex flex-col items-center relative z-10"
+      transition={{ duration: 2, ease: [0.22, 1, 0.36, 1] }}
+      className="w-full max-w-7xl flex flex-col items-center relative z-10"
     >
       {children}
     </motion.div>
@@ -228,16 +228,16 @@ const Section = ({ children, className = "", id = "" }: { children: React.ReactN
 );
 
 const RoyalDivider = () => (
-  <div className="flex items-center justify-center gap-4 my-24 md:my-32 opacity-80">
-    <div className="h-[1px] w-16 md:w-32 bg-gradient-to-r from-transparent via-gold-500 to-gold-300" />
-    <div className="text-gold-500 flex items-center gap-3">
-      <Sparkles size={14} className="animate-pulse" />
-      <div className="w-8 h-8 rounded-full border border-gold-500/30 flex items-center justify-center shadow-[0_0_15px_rgba(15,142,233,0.3)]">
-        <Heart size={14} fill="currentColor" className="text-gold-500" />
+  <div className="flex items-center justify-center gap-6 my-32 md:my-48 opacity-90">
+    <div className="h-[1px] w-24 md:w-48 bg-gradient-to-r from-transparent via-gold-500 to-gold-300" />
+    <div className="text-gold-500 flex items-center gap-4">
+      <Sparkles size={18} className="animate-pulse" />
+      <div className="w-12 h-12 rounded-full border-2 border-gold-500/40 flex items-center justify-center shadow-[0_0_30px_rgba(15,142,233,0.4)] bg-gold-500/5">
+        <Heart size={18} fill="currentColor" className="text-gold-500" />
       </div>
-      <Sparkles size={14} className="animate-pulse" />
+      <Sparkles size={18} className="animate-pulse" />
     </div>
-    <div className="h-[1px] w-16 md:w-32 bg-gradient-to-l from-transparent via-gold-500 to-gold-300" />
+    <div className="h-[1px] w-24 md:w-48 bg-gradient-to-l from-transparent via-gold-500 to-gold-300" />
   </div>
 );
 
@@ -351,7 +351,7 @@ export default function App() {
     }
     testConnection();
 
-    const q = query(collection(db, 'wishes'), orderBy('createdAt', 'desc'));
+    const q = query(collection(db, 'whises2'), orderBy('createdAt', 'desc'));
     const unsubscribe = onSnapshot(q, (snapshot) => {
       const wishesData: Wish[] = [];
       snapshot.forEach((doc) => {
@@ -359,7 +359,7 @@ export default function App() {
       });
       setWishes(wishesData);
     }, (error) => {
-      handleFirestoreError(error, OperationType.LIST, 'wishes');
+      handleFirestoreError(error, OperationType.LIST, 'whises2');
     });
 
     return () => unsubscribe();
@@ -369,7 +369,7 @@ export default function App() {
     if (wishName.trim() && wishMessage.trim() && attendance) {
       setIsSending(true);
       try {
-        await addDoc(collection(db, 'wishes'), {
+        await addDoc(collection(db, 'whises2'), {
           name: wishName,
           message: wishMessage,
           attendance,
@@ -379,7 +379,7 @@ export default function App() {
         setWishMessage('');
         setAttendance('');
       } catch (error) {
-        handleFirestoreError(error, OperationType.CREATE, 'wishes');
+        handleFirestoreError(error, OperationType.CREATE, 'whises2');
       } finally {
         setIsSending(false);
       }
@@ -392,8 +392,8 @@ export default function App() {
     setTimeout(() => setCopiedIndex(null), 2000);
   };
 
-  // Target date: 4 April 2026
-  const targetDate = new Date('2026-04-04T10:00:00');
+  // Target date: 5 April 2026
+  const targetDate = new Date('2026-04-05T10:00:00');
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -428,7 +428,7 @@ export default function App() {
 
   return (
     <ErrorBoundary>
-      <div className="relative bg-white min-h-screen selection:bg-gold-500/20 selection:text-royal-text overflow-x-hidden">
+      <div className="relative bg-royal-bg min-h-screen selection:bg-gold-500 selection:text-royal-bg overflow-x-hidden">
       <PictureBackground />
       {/* Music Toggle */}
       {isOpen && <MusicPlayer isPlaying={isPlaying} setIsPlaying={setIsPlaying} />}
@@ -459,7 +459,7 @@ export default function App() {
             <div className="absolute inset-0 z-0">
               <img 
                 src="/hero.jpg" 
-                alt="Aulia & Jarwal" 
+                alt="Jarwal & Aulia" 
                 className="w-full h-full object-cover"
                 onError={(e) => { e.currentTarget.src = "https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop" }}
                 referrerPolicy="no-referrer"
@@ -490,14 +490,14 @@ export default function App() {
             >
               <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold-400 mb-6 md:mb-8 font-sans font-semibold">The Wedding Celebration of</span>
               
-              <h1 className="text-4xl md:text-7xl font-display mb-6 tracking-widest gold-text-shimmer font-black">
-                AULIA <span className="text-2xl md:text-4xl block md:inline text-gold-500 font-serif italic my-4 md:my-0 md:mx-4">&</span> JARWAL
+              <h1 className="text-5xl md:text-9xl font-display mb-8 tracking-[0.2em] gold-text-shimmer font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">
+                JARWAL <span className="text-3xl md:text-5xl block md:inline text-gold-500 font-serif italic my-6 md:my-0 md:mx-6">&</span> AULIA
               </h1>
 
               <div className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent my-8 md:my-10" />
 
               <p className="text-xs md:text-sm uppercase tracking-[0.4em] text-gold-300 mb-10 md:mb-12 font-sans font-bold">
-                Sabtu, 4 April 2026
+                Minggu, 5 April 2026
               </p>
 
               <div className="mb-10 md:mb-12 p-6 md:p-8 border border-white/30 rounded-none bg-black/20 backdrop-blur-md shadow-[0_0_30px_rgba(15,142,233,0.2)] relative overflow-hidden group w-full max-w-md">
@@ -544,7 +544,7 @@ export default function App() {
                 <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold-500/50 shadow-[0_0_60px_rgba(15,142,233,0.3)] relative z-10 bg-white">
                   <img 
                     src="/hero.jpg" 
-                    alt="Aulia & Jarwal" 
+                    alt="Jarwal & Aulia" 
                     className="w-full h-full object-cover opacity-90"
                     onError={(e) => { e.currentTarget.src = "https://picsum.photos/seed/wedding-hero/800/800" }}
                     referrerPolicy="no-referrer"
@@ -553,8 +553,8 @@ export default function App() {
               </motion.div>
 
               <span className="text-[10px] md:text-xs uppercase tracking-[0.8em] text-gold-500 mb-6 md:mb-8 font-sans font-black">The Royal Wedding Celebration of</span>
-              <h2 className="text-4xl md:text-8xl font-display gold-text-shimmer mb-8 md:mb-10 tracking-tighter font-black">
-                Aulia <span className="text-2xl md:text-5xl font-serif italic text-gold-500">&</span> Jarwal
+              <h2 className="text-5xl md:text-9xl font-display gold-text-shimmer mb-10 md:mb-14 tracking-tighter font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">
+                Jarwal <span className="text-3xl md:text-6xl font-serif italic text-gold-500">&</span> Aulia
               </h2>
               
               <RoyalOrnament />
@@ -581,33 +581,33 @@ export default function App() {
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center my-16 md:my-20">
-                  <div className="space-y-4 md:space-y-6">
-                    <h4 className="text-3xl md:text-5xl font-display gold-text-shimmer font-black tracking-tight">Aulia Ramadani</h4>
-                    <p className="text-[9px] md:text-[10px] text-gold-500 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
-                    <p className="text-lg md:text-xl font-serif text-royal-text italic">Bapak ABD AZIZ & Ibu NABASIA</p>
-                    <motion.a 
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      href="https://www.instagram.com/dedeaul_?igsh=MWZmaDE4eG1oNjBrNQ==" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-flex p-3 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-4 border border-gold-500/20"
-                    >
-                      <Instagram className="w-5 h-5" />
-                    </motion.a>
-                  </div>
-                  <div className="text-5xl font-script text-gold-500">&</div>
                   <div className="space-y-6">
-                    <h4 className="text-5xl font-display gold-text-shimmer font-black tracking-tight">Jarwal</h4>
+                    <h4 className="text-6xl md:text-8xl font-display gold-text-shimmer font-black tracking-tight drop-shadow-[0_0_20px_rgba(15,142,233,0.3)]">Jarwal</h4>
                     <p className="text-[10px] text-gold-500 font-sans uppercase tracking-[0.4em] font-black">Putra bungsu dari</p>
-                    <p className="text-xl font-serif text-royal-text italic">Bapak H RAMLI & Ibu HJ HAWANG</p>
+                    <p className="text-xl font-serif text-royal-text italic font-bold">Bapak H RAMLI & Ibu HJ HAWANG</p>
                     <motion.a 
                       whileHover={{ scale: 1.1, rotate: -5 }}
                       href="https://www.instagram.com/jarwall_09?igsh=MWVubnI2MW1scTUzMA==" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex p-3 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-4 border border-gold-500/20"
+                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-xl mt-6 border border-gold-500/20"
                     >
-                      <Instagram className="w-5 h-5" />
+                      <Instagram className="w-6 h-6" />
+                    </motion.a>
+                  </div>
+                  <div className="text-6xl font-script text-gold-500">&</div>
+                  <div className="space-y-4 md:space-y-6">
+                    <h4 className="text-4xl md:text-6xl font-display gold-text-shimmer font-black tracking-tight drop-shadow-[0_0_20px_rgba(15,142,233,0.3)]">Aulia Ramadani</h4>
+                    <p className="text-[9px] md:text-[10px] text-gold-500 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
+                    <p className="text-lg md:text-xl font-serif text-royal-text italic font-bold">Bapak ABD AZIZ & Ibu NABASIA</p>
+                    <motion.a 
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      href="https://www.instagram.com/dedeaul_?igsh=MWZmaDE4eG1oNjBrNQ==" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-xl mt-6 border border-gold-500/20"
+                    >
+                      <Instagram className="w-6 h-6" />
                     </motion.a>
                   </div>
                 </div>
@@ -629,10 +629,10 @@ export default function App() {
                 <div className="absolute bottom-0 left-0 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl -ml-32 -mb-32" />
 
                 <div className="relative z-10 text-center">
-                  <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-12 md:mb-16">
-                    <Calendar className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
-                    <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Save The Date</h2>
-                    <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Waktu & Tempat</p>
+                  <div className="flex flex-col items-center justify-center gap-6 md:gap-10 mb-16 md:mb-24">
+                    <Calendar className="w-12 h-12 md:w-16 md:h-16 text-gold-400 animate-pulse" />
+                    <h2 className="font-display text-3xl md:text-7xl gold-text-shimmer tracking-[0.4em] uppercase font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">Save The Date</h2>
+                    <p className="font-serif text-gold-500 text-sm tracking-[0.3em] uppercase font-black -mt-6">Waktu & Tempat</p>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-12 md:gap-24">
@@ -641,9 +641,9 @@ export default function App() {
                         <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(15,142,233,0.2)] border border-gold-500/30">
                           <Calendar className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
-                        <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Akad Nikah</h3>
+                        <h3 className="font-display text-2xl md:text-4xl font-black text-gold-500 mb-6 md:mb-8 uppercase tracking-[0.3em] drop-shadow-[0_0_15px_rgba(15,142,233,0.2)]">Akad Nikah</h3>
                         <div className="w-20 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-6 md:mb-8 mx-auto" />
-                        <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Sabtu, 4 April 2026</p>
+                        <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
                           <span>10.00 WITA - Selesai</span>
@@ -656,9 +656,9 @@ export default function App() {
                         <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(15,142,233,0.2)] border border-gold-500/30">
                           <Heart className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
-                        <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Resepsi</h3>
+                        <h3 className="font-display text-2xl md:text-4xl font-black text-gold-500 mb-6 md:mb-8 uppercase tracking-[0.3em] drop-shadow-[0_0_15px_rgba(15,142,233,0.2)]">Resepsi</h3>
                         <div className="w-20 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-6 md:mb-8 mx-auto" />
-                        <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Sabtu, 4 April 2026</p>
+                        <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
                           <span>12.00 WITA - Selesai</span>
@@ -671,12 +671,12 @@ export default function App() {
                     <MapPin className="w-12 h-12 md:w-16 md:h-16 text-gold-400 mb-6 md:mb-8 animate-bounce" />
                     <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Lokasi Acara</h3>
                     <p className="font-serif text-royal-text max-w-lg mb-10 md:mb-12 text-xl md:text-2xl leading-relaxed font-bold italic">
-                      BTN PEPABRI SUDIANG BLOK E12/7
+                      Baju Bodoa, Kec. Maros Baru, Kab. Maros
                     </p>
                     <motion.button 
                       whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(15,142,233,0.4)" }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => window.open('https://maps.app.goo.gl/DavZrebYAX4FPHXN6?g_st=awb', '_blank')}
+                      onClick={() => window.open('https://maps.google.com/maps?q=2H82%2BM5R%2C%2BBaju%2BBodoa%2C%2BKec.%2BMaros%2BBaru%2C%2BKabupaten%2BMaros%2C%2BSulawesi%2BSelatan%2B90514%2C%2BIndonesia&sll=-4.983402555780799,119.55027189105748', '_blank')}
                       className="px-12 py-5 bg-gold-600 text-royal-bg rounded-none font-display tracking-[0.5em] uppercase text-[10px] font-black shadow-2xl flex items-center gap-4 hover:bg-gold-500 transition-all"
                     >
                       <Navigation className="w-6 h-6" />
@@ -689,11 +689,11 @@ export default function App() {
                         whileTap={{ scale: 0.95 }}
                         onClick={() => {
                           const event = {
-                            title: 'Wedding of Aulia & Jarwal',
-                            start: '20260404T100000',
-                            end: '20260404T220000',
-                            location: 'BTN PEPABRI SUDIANG BLOK E12/7',
-                            details: 'Pernikahan Aulia & Jarwal'
+                            title: 'Wedding of Jarwal & Aulia',
+                            start: '20260405T100000',
+                            end: '20260405T220000',
+                            location: 'Baju Bodoa, Kec. Maros Baru, Kab. Maros',
+                            details: 'Pernikahan Jarwal & Aulia'
                           };
                           window.open(`https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(event.title)}&dates=${event.start}/${event.end}&details=${encodeURIComponent(event.details)}&location=${encodeURIComponent(event.location)}`, '_blank');
                         }}
@@ -709,7 +709,7 @@ export default function App() {
                         onClick={() => {
                           if (navigator.share) {
                             navigator.share({
-                              title: 'Undangan Pernikahan Aulia & Jarwal',
+                              title: 'Undangan Pernikahan Jarwal & Aulia',
                               text: 'Kami mengundang Anda untuk hadir di hari bahagia kami.',
                               url: window.location.href
                             });
@@ -939,12 +939,12 @@ export default function App() {
                 viewport={{ once: true }}
                 className="max-w-5xl w-full text-center"
               >
-                <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-12 md:mb-16">
-                  <div className="wax-seal mb-4" />
-                  <Flower className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
-                  <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Guest Book</h2>
+                <div className="flex flex-col items-center justify-center gap-6 md:gap-10 mb-16 md:mb-24">
+                  <div className="wax-seal mb-6 scale-125" />
+                  <Flower className="w-12 h-12 md:w-16 md:h-16 text-gold-400 animate-pulse" />
+                  <h2 className="font-display text-3xl md:text-7xl gold-text-shimmer tracking-[0.4em] uppercase font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">Guest Book</h2>
                   <RoyalOrnament />
-                  <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Ucapan & Doa Restu</p>
+                  <p className="font-serif text-gold-500 text-sm tracking-[0.3em] uppercase font-black -mt-6">Ucapan & Doa Restu</p>
                 </div>
                 <p className="font-body text-lg md:text-2xl text-royal-text/70 mb-16 md:mb-20 italic">Berikan doa restu Anda untuk perjalanan suci kami</p>
                 
@@ -1056,11 +1056,11 @@ export default function App() {
                 viewport={{ once: true }}
                 className="max-w-5xl w-full relative z-10"
               >
-                <div className="text-center mb-20">
-                  <Gift className="w-12 h-12 text-gold-400 mx-auto mb-8 animate-bounce" />
-                  <h2 className="font-display text-4xl md:text-6xl gold-text-shimmer mb-8 tracking-[0.4em] uppercase font-black">Wedding Gift</h2>
+                <div className="text-center mb-20 md:mb-28">
+                  <Gift className="w-16 h-16 md:w-20 md:h-20 text-gold-400 mx-auto mb-10 md:mb-12 animate-bounce" />
+                  <h2 className="font-display text-4xl md:text-8xl gold-text-shimmer mb-10 md:mb-14 tracking-[0.4em] uppercase font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">Wedding Gift</h2>
                   <RoyalOrnament />
-                  <p className="font-body text-2xl text-royal-text/70 max-w-3xl mx-auto italic mt-8">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui:</p>
+                  <p className="font-body text-2xl md:text-3xl text-royal-text/70 max-w-4xl mx-auto italic mt-12 leading-relaxed">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui:</p>
                 </div>
                 
                 <div className="grid sm:grid-cols-2 gap-10 max-w-4xl mx-auto">
@@ -1093,12 +1093,12 @@ export default function App() {
                     <div className="relative z-10">
                       <div className="h-8 mb-10 flex items-center font-display font-black text-gold-300 tracking-[0.3em] text-sm uppercase">Kirim Kado</div>
                       <p className="text-[10px] uppercase tracking-[0.5em] text-gold-500 font-black mb-3">Alamat Pengiriman</p>
-                      <p className="text-2xl font-display text-royal-text mb-2 font-black tracking-tight leading-tight">BTN PEPABRI SUDIANG BLOK E12/7</p>
-                      <p className="text-lg font-body text-gold-600 italic">Makassar, Sulawesi Selatan</p>
+                      <p className="text-2xl font-display text-royal-text mb-2 font-black tracking-tight leading-tight">Baju Bodoa, Kec. Maros Baru, Kab. Maros</p>
+                      <p className="text-lg font-body text-gold-600 italic">Maros, Sulawesi Selatan</p>
                       <motion.button 
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        onClick={() => copyToClipboard('BTN PEPABRI SUDIANG BLOK E12/7', 1)}
+                        onClick={() => copyToClipboard('Baju Bodoa, Kec. Maros Baru, Kab. Maros', 1)}
                         className="mt-10 flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.4em] text-gold-600 hover:text-gold-900 transition-all"
                       >
                         {copiedIndex === 1 ? (
@@ -1116,37 +1116,37 @@ export default function App() {
             <RoyalDivider />
 
             {/* Closing Quote */}
-            <Section className="py-40">
+            <Section className="py-40 md:py-60">
               <motion.div
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="max-w-4xl text-center"
+                className="max-w-5xl text-center"
               >
-                <div className="wax-seal mx-auto mb-16" />
-                <p className="font-body text-3xl text-royal-text leading-relaxed italic mb-12 px-8">
+                <div className="wax-seal mx-auto mb-20 scale-150" />
+                <p className="font-body text-3xl md:text-5xl text-royal-text leading-relaxed italic mb-16 px-8 md:px-12 drop-shadow-[0_0_20px_rgba(15,142,233,0.2)]">
                   "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."
                 </p>
                 <RoyalOrnament />
-                <p className="font-display text-gold-500 font-black tracking-[0.6em] uppercase text-sm mt-12">QS. Ar-Rum: 21</p>
+                <p className="font-display text-gold-500 font-black tracking-[0.8em] uppercase text-base mt-16 drop-shadow-[0_0_10px_rgba(15,142,233,0.2)]">QS. Ar-Rum: 21</p>
               </motion.div>
             </Section>
 
             {/* Footer */}
-            <footer className="py-32 text-center relative overflow-hidden border-t border-gold-500/10 bg-transparent">
+            <footer className="py-40 md:py-52 text-center relative overflow-hidden border-t border-gold-500/10 bg-transparent">
               <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/royal-feather.png')] z-[1]" />
               <div className="relative z-10 flex flex-col items-center">
-                <div className="mb-12">
+                <div className="mb-16">
                   <WeddingLogo size="lg" />
                 </div>
-                <h2 className="font-display text-5xl md:text-7xl gold-text-shimmer mb-10 tracking-[0.5em] uppercase font-black">Aulia & Jarwal</h2>
-                <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-600 to-transparent mx-auto mb-12" />
-                <p className="font-sans text-gold-500 text-xs tracking-[0.8em] uppercase font-black">Terima Kasih Atas Doa Restu Anda</p>
-                <div className="mt-20 opacity-30">
+                <h2 className="font-display text-6xl md:text-9xl gold-text-shimmer mb-14 tracking-[0.5em] uppercase font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">Jarwal & Aulia</h2>
+                <div className="w-48 h-[1px] bg-gradient-to-r from-transparent via-gold-600 to-transparent mx-auto mb-16" />
+                <p className="font-sans text-gold-500 text-sm md:text-base tracking-[1em] uppercase font-black drop-shadow-[0_0_10px_rgba(15,142,233,0.2)]">Terima Kasih Atas Doa Restu Anda</p>
+                <div className="mt-24 opacity-40">
                   <RoyalOrnament />
                 </div>
-                <div className="mt-24 pb-8">
-                  <p className="text-[10px] md:text-[11px] uppercase tracking-[0.6em] text-gold-500/40 font-black font-sans">
+                <div className="mt-32 pb-12">
+                  <p className="text-[10px] md:text-[12px] uppercase tracking-[0.8em] text-gold-500/40 font-black font-sans">
                     GIMA HOSTING INVITATION
                   </p>
                 </div>
@@ -1165,11 +1165,11 @@ export default function App() {
           background: transparent;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: #ffccd5;
+          background: #d4af37;
           border-radius: 10px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: #f83b65;
+          background: #f8f1e7;
         }
       `}</style>
     </div>
