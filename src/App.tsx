@@ -577,7 +577,7 @@ export default function App() {
               <div className="max-w-4xl glass-card royal-border p-8 md:p-24 shadow-2xl">
                 <h3 className="text-2xl md:text-4xl font-display gold-text-shimmer mb-10 md:mb-12 tracking-[0.2em] uppercase font-bold">Assalamu'alaikum Wr. Wb.</h3>
                 <p className="font-body text-lg md:text-xl leading-relaxed mb-10 md:mb-12 text-royal-text/80 italic">
-                  Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri Resepsi Pernikahan putra-putri kami:
+                  Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri Akad Nikah putra-putri kami:
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center my-16 md:my-20">
@@ -635,7 +635,7 @@ export default function App() {
                     <p className="font-serif text-gold-600 text-sm tracking-[0.3em] uppercase font-black -mt-6">Waktu & Tempat</p>
                   </div>
                   
-                  <div className="grid md:grid-cols-2 gap-12 md:gap-24">
+                  <div className="flex flex-col items-center">
                     <div className="space-y-8 md:space-y-10">
                       <div className="flex flex-col items-center">
                         <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-inner border border-gold-500/30">
@@ -647,21 +647,6 @@ export default function App() {
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
                           <span>10.00 WITA - Selesai</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="space-y-8 md:space-y-10">
-                      <div className="flex flex-col items-center">
-                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-inner border border-gold-500/30">
-                          <Heart className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
-                        </div>
-                        <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Resepsi</h3>
-                        <div className="w-20 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-6 md:mb-8 mx-auto" />
-                        <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
-                        <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
-                          <Clock className="w-5 h-5" />
-                          <span>14.00 WITA - Selesai</span>
                         </div>
                       </div>
                     </div>
