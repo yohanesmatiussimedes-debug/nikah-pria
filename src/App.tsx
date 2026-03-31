@@ -183,11 +183,11 @@ const WeddingLogo = ({ size = "md" }: { size?: "sm" | "md" | "lg" }) => {
       <div className="absolute inset-2 border border-gold-400/20 rounded-full animate-reverse-spin-slow" />
       
       {/* Main Circle */}
-      <div className="absolute inset-4 bg-gradient-to-br from-gold-100 to-white rounded-full border-2 border-gold-500/50 flex items-center justify-center shadow-xl">
+      <div className="absolute inset-4 bg-gradient-to-br from-gold-50 to-white rounded-full border-2 border-gold-200 flex items-center justify-center shadow-lg">
         <div className="flex items-center gap-1 font-display font-black gold-text-shimmer">
-          <span>J</span>
-          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-rosegold-500 animate-pulse" />
           <span>A</span>
+          <Heart size={size === "lg" ? 20 : 14} fill="currentColor" className="text-gold-500 animate-pulse" />
+          <span>J</span>
         </div>
       </div>
       
@@ -232,7 +232,7 @@ const RoyalDivider = () => (
     <div className="h-[1px] w-24 md:w-48 bg-gradient-to-r from-transparent via-gold-500 to-gold-300" />
     <div className="text-gold-500 flex items-center gap-4">
       <Sparkles size={18} className="animate-pulse" />
-      <div className="w-12 h-12 rounded-full border-2 border-gold-500/40 flex items-center justify-center shadow-[0_0_30px_rgba(15,142,233,0.4)] bg-gold-500/5">
+      <div className="w-12 h-12 rounded-full border-2 border-gold-500/40 flex items-center justify-center shadow-lg bg-gold-500/5">
         <Heart size={18} fill="currentColor" className="text-gold-500" />
       </div>
       <Sparkles size={18} className="animate-pulse" />
@@ -261,9 +261,9 @@ const RoyalOrnament = () => (
 
 const CountdownItem = ({ value, label }: { value: number, label: string }) => (
   <div className="flex flex-col items-center mx-3 sm:mx-6 group">
-    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500 drop-shadow-[0_0_15px_rgba(15,142,233,0.3)]">{value}</div>
+    <div className="text-4xl sm:text-6xl font-display font-bold gold-text-shimmer mb-2 transition-transform group-hover:scale-110 duration-500">{value}</div>
     <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-3" />
-    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-gold-400 font-bold">{label}</span>
+    <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.4em] text-gold-600 font-bold">{label}</span>
   </div>
 );
 
@@ -490,8 +490,8 @@ export default function App() {
             >
               <span className="text-[10px] md:text-xs uppercase tracking-[0.5em] text-gold-400 mb-6 md:mb-8 font-sans font-semibold">The Wedding Celebration of</span>
               
-              <h1 className="text-5xl md:text-9xl font-display mb-8 tracking-[0.2em] gold-text-shimmer font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">
-                JARWAL <span className="text-3xl md:text-5xl block md:inline text-gold-500 font-serif italic my-6 md:my-0 md:mx-6">&</span> AULIA
+              <h1 className="text-4xl md:text-7xl font-display mb-6 tracking-widest gold-text-shimmer font-black">
+                AULIA <span className="text-2xl md:text-4xl block md:inline text-gold-500 font-serif italic my-4 md:my-0 md:mx-4">&</span> JARWAL
               </h1>
 
               <div className="w-24 md:w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent my-8 md:my-10" />
@@ -500,14 +500,14 @@ export default function App() {
                 Minggu, 5 April 2026
               </p>
 
-              <div className="mb-10 md:mb-12 p-6 md:p-8 border border-white/30 rounded-none bg-black/20 backdrop-blur-md shadow-[0_0_30px_rgba(15,142,233,0.2)] relative overflow-hidden group w-full max-w-md">
+              <div className="mb-10 md:mb-12 p-6 md:p-8 border border-white/30 rounded-none bg-white/10 backdrop-blur-md shadow-xl relative overflow-hidden group w-full max-w-md">
                 <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                 <p className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-white/80 mb-3 font-bold">Kepada Yth. Bapak/Ibu/Saudara/i</p>
                 <p className="text-2xl md:text-3xl font-serif italic text-white gold-text-shimmer">{guestName}</p>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(15,142,233,0.4)" }}
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 30px rgba(212,175,55,0.3)" }}
                 whileTap={{ scale: 0.95 }}
                 onClick={handleOpen}
                 className="group relative px-10 py-4 md:px-12 md:py-5 bg-gold-600 text-royal-bg uppercase tracking-[0.5em] text-[9px] md:text-[10px] font-black transition-all duration-500 overflow-hidden shadow-2xl"
@@ -541,7 +541,7 @@ export default function App() {
               >
                 <div className="absolute -inset-12 border border-gold-500/20 rounded-full animate-spin-slow" />
                 <div className="absolute -inset-6 border border-gold-400/10 rounded-full animate-reverse-spin-slow" />
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold-500/50 shadow-[0_0_60px_rgba(15,142,233,0.3)] relative z-10 bg-white">
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-gold-500/50 shadow-2xl relative z-10 bg-white">
                   <img 
                     src="/hero.jpg" 
                     alt="Jarwal & Aulia" 
@@ -553,8 +553,8 @@ export default function App() {
               </motion.div>
 
               <span className="text-[10px] md:text-xs uppercase tracking-[0.8em] text-gold-500 mb-6 md:mb-8 font-sans font-black">The Royal Wedding Celebration of</span>
-              <h2 className="text-5xl md:text-9xl font-display gold-text-shimmer mb-10 md:mb-14 tracking-tighter font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">
-                Jarwal <span className="text-3xl md:text-6xl font-serif italic text-gold-500">&</span> Aulia
+              <h2 className="text-4xl md:text-8xl font-display gold-text-shimmer mb-8 md:mb-10 tracking-tighter font-black">
+                Aulia <span className="text-2xl md:text-5xl font-serif italic text-gold-500">&</span> Jarwal
               </h2>
               
               <RoyalOrnament />
@@ -574,38 +574,38 @@ export default function App() {
                 <RoyalOrnament />
                 <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Undangan Suci</p>
               </div>
-              <div className="max-w-4xl glass-card royal-border p-8 md:p-24 shadow-[0_0_100px_rgba(0,0,0,0.5)]">
+              <div className="max-w-4xl glass-card royal-border p-8 md:p-24 shadow-2xl">
                 <h3 className="text-2xl md:text-4xl font-display gold-text-shimmer mb-10 md:mb-12 tracking-[0.2em] uppercase font-bold">Assalamu'alaikum Wr. Wb.</h3>
                 <p className="font-body text-lg md:text-xl leading-relaxed mb-10 md:mb-12 text-royal-text/80 italic">
                   Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud mengundang Bapak/Ibu/Saudara/i untuk menghadiri Resepsi Pernikahan putra-putri kami:
                 </p>
 
                 <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center my-16 md:my-20">
-                  <div className="space-y-6">
-                    <h4 className="text-6xl md:text-8xl font-display gold-text-shimmer font-black tracking-tight drop-shadow-[0_0_20px_rgba(15,142,233,0.3)]">Jarwal</h4>
-                    <p className="text-[10px] text-gold-500 font-sans uppercase tracking-[0.4em] font-black">Putra bungsu dari</p>
-                    <p className="text-xl font-serif text-royal-text italic font-bold">Bapak H RAMLI & Ibu HJ HAWANG</p>
-                    <motion.a 
-                      whileHover={{ scale: 1.1, rotate: -5 }}
-                      href="https://www.instagram.com/jarwall_09?igsh=MWVubnI2MW1scTUzMA==" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-xl mt-6 border border-gold-500/20"
-                    >
-                      <Instagram className="w-6 h-6" />
-                    </motion.a>
-                  </div>
-                  <div className="text-6xl font-script text-gold-500">&</div>
                   <div className="space-y-4 md:space-y-6">
-                    <h4 className="text-4xl md:text-6xl font-display gold-text-shimmer font-black tracking-tight drop-shadow-[0_0_20px_rgba(15,142,233,0.3)]">Aulia Ramadani</h4>
-                    <p className="text-[9px] md:text-[10px] text-gold-500 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
+                    <h4 className="text-4xl md:text-6xl font-display gold-text-shimmer font-black tracking-tight">Aulia Ramadani</h4>
+                    <p className="text-[9px] md:text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putri kedua dari</p>
                     <p className="text-lg md:text-xl font-serif text-royal-text italic font-bold">Bapak ABD AZIZ & Ibu NABASIA</p>
                     <motion.a 
                       whileHover={{ scale: 1.1, rotate: 5 }}
                       href="https://www.instagram.com/dedeaul_?igsh=MWZmaDE4eG1oNjBrNQ==" 
                       target="_blank" 
                       rel="noopener noreferrer" 
-                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-400 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-xl mt-6 border border-gold-500/20"
+                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-600 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-6 border border-gold-200"
+                    >
+                      <Instagram className="w-6 h-6" />
+                    </motion.a>
+                  </div>
+                  <div className="text-6xl font-script text-gold-500">&</div>
+                  <div className="space-y-6">
+                    <h4 className="text-6xl md:text-8xl font-display gold-text-shimmer font-black tracking-tight">Jarwal</h4>
+                    <p className="text-[10px] text-gold-600 font-sans uppercase tracking-[0.4em] font-black">Putra bungsu dari</p>
+                    <p className="text-xl font-serif text-royal-text italic font-bold">Bapak H RAMLI & Ibu HJ HAWANG</p>
+                    <motion.a 
+                      whileHover={{ scale: 1.1, rotate: -5 }}
+                      href="https://www.instagram.com/jarwall_09?igsh=MWVubnI2MW1scTUzMA==" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="inline-flex p-4 rounded-full bg-gold-500/10 text-gold-600 hover:bg-gold-500 hover:text-royal-bg transition-all shadow-md mt-6 border border-gold-200"
                     >
                       <Instagram className="w-6 h-6" />
                     </motion.a>
@@ -630,18 +630,18 @@ export default function App() {
 
                 <div className="relative z-10 text-center">
                   <div className="flex flex-col items-center justify-center gap-6 md:gap-10 mb-16 md:mb-24">
-                    <Calendar className="w-12 h-12 md:w-16 md:h-16 text-gold-400 animate-pulse" />
-                    <h2 className="font-display text-3xl md:text-7xl gold-text-shimmer tracking-[0.4em] uppercase font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">Save The Date</h2>
-                    <p className="font-serif text-gold-500 text-sm tracking-[0.3em] uppercase font-black -mt-6">Waktu & Tempat</p>
+                    <Calendar className="w-12 h-12 md:w-16 md:h-16 text-gold-500 animate-pulse" />
+                    <h2 className="font-display text-3xl md:text-7xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Save The Date</h2>
+                    <p className="font-serif text-gold-600 text-sm tracking-[0.3em] uppercase font-black -mt-6">Waktu & Tempat</p>
                   </div>
                   
                   <div className="grid md:grid-cols-2 gap-12 md:gap-24">
                     <div className="space-y-8 md:space-y-10">
                       <div className="flex flex-col items-center">
-                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(15,142,233,0.2)] border border-gold-500/30">
+                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-inner border border-gold-500/30">
                           <Calendar className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
-                        <h3 className="font-display text-2xl md:text-4xl font-black text-gold-500 mb-6 md:mb-8 uppercase tracking-[0.3em] drop-shadow-[0_0_15px_rgba(15,142,233,0.2)]">Akad Nikah</h3>
+                        <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Akad Nikah</h3>
                         <div className="w-20 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-6 md:mb-8 mx-auto" />
                         <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
@@ -653,15 +653,15 @@ export default function App() {
 
                     <div className="space-y-8 md:space-y-10">
                       <div className="flex flex-col items-center">
-                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-[inset_0_0_20px_rgba(15,142,233,0.2)] border border-gold-500/30">
+                        <div className="p-6 md:p-8 bg-gold-500/10 rounded-full mb-6 md:mb-8 shadow-inner border border-gold-500/30">
                           <Heart className="w-10 h-10 md:w-12 md:h-12 text-gold-400" />
                         </div>
-                        <h3 className="font-display text-2xl md:text-4xl font-black text-gold-500 mb-6 md:mb-8 uppercase tracking-[0.3em] drop-shadow-[0_0_15px_rgba(15,142,233,0.2)]">Resepsi</h3>
+                        <h3 className="font-display text-xl md:text-3xl font-black text-gold-800 mb-4 md:mb-6 uppercase tracking-[0.2em]">Resepsi</h3>
                         <div className="w-20 md:w-24 h-[1px] bg-gradient-to-r from-transparent via-gold-500 to-transparent mb-6 md:mb-8 mx-auto" />
                         <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
-                          <span>12.00 WITA - Selesai</span>
+                          <span>14.00 WITA - Selesai</span>
                         </div>
                       </div>
                     </div>
@@ -674,7 +674,7 @@ export default function App() {
                       Baju Bodoa, Kec. Maros Baru, Kab. Maros
                     </p>
                     <motion.button 
-                      whileHover={{ scale: 1.05, boxShadow: "0 0 40px rgba(15,142,233,0.4)" }}
+                      whileHover={{ scale: 1.05, boxShadow: "0 15px 40px rgba(212,175,55,0.3)" }}
                       whileTap={{ scale: 0.95 }}
                       onClick={() => window.open('https://maps.google.com/maps?q=2H82%2BM5R%2C%2BBaju%2BBodoa%2C%2BKec.%2BMaros%2BBaru%2C%2BKabupaten%2BMaros%2C%2BSulawesi%2BSelatan%2B90514%2C%2BIndonesia&sll=-4.983402555780799,119.55027189105748', '_blank')}
                       className="px-12 py-5 bg-gold-600 text-royal-bg rounded-none font-display tracking-[0.5em] uppercase text-[10px] font-black shadow-2xl flex items-center gap-4 hover:bg-gold-500 transition-all"
@@ -807,7 +807,7 @@ export default function App() {
                       key={num}
                       whileHover={{ scale: 1.05, y: -15, rotate: num % 2 === 0 ? 2 : -2 }}
                       onClick={() => setSelectedImage(`/love${num}.jpg`)}
-                      className={`relative overflow-hidden royal-border glass-card p-3 shadow-[0_20px_50px_rgba(0,0,0,0.5)] cursor-pointer ${num % 2 === 0 ? 'md:mt-16' : ''}`}
+                      className={`relative overflow-hidden royal-border glass-card p-3 shadow-xl cursor-pointer ${num % 2 === 0 ? 'md:mt-16' : ''}`}
                     >
                       <div className="overflow-hidden aspect-[3/4] rounded-sm">
                         <img 
@@ -886,10 +886,10 @@ export default function App() {
                     { year: "2026", title: "Lamaran", desc: "Di hadapan keluarga, kami mengikat janji suci untuk melangkah ke jenjang yang lebih serius, menuju ibadah terlama kami." }
                   ].map((story, i) => (
                     <div key={i} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                      <div className="flex items-center justify-center w-14 h-14 rounded-full border-4 border-royal-bg bg-gold-600 text-royal-bg shadow-[0_0_20px_rgba(15,142,233,0.5)] shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125 group-hover:bg-gold-400">
+                      <div className="flex items-center justify-center w-14 h-14 rounded-full border-4 border-royal-bg bg-gold-600 text-royal-bg shadow-lg shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10 transition-transform group-hover:scale-125 group-hover:bg-gold-400">
                         <Heart size={24} fill="currentColor" />
                       </div>
-                      <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-4rem)] p-10 rounded-[2.5rem] glass-card royal-border text-left group-hover:shadow-[0_0_50px_rgba(15,142,233,0.2)] transition-all duration-500">
+                      <div className="w-[calc(100%-4.5rem)] md:w-[calc(50%-4rem)] p-10 rounded-[2.5rem] glass-card royal-border text-left group-hover:shadow-2xl transition-all duration-500">
                         <div className="flex items-center justify-between space-x-4 mb-6">
                           <div className="font-display font-black text-gold-800 text-2xl tracking-widest uppercase">{story.title}</div>
                           <time className="font-serif italic text-gold-500 font-black text-xl">{story.year}</time>
@@ -939,12 +939,12 @@ export default function App() {
                 viewport={{ once: true }}
                 className="max-w-5xl w-full text-center"
               >
-                <div className="flex flex-col items-center justify-center gap-6 md:gap-10 mb-16 md:mb-24">
-                  <div className="wax-seal mb-6 scale-125" />
-                  <Flower className="w-12 h-12 md:w-16 md:h-16 text-gold-400 animate-pulse" />
-                  <h2 className="font-display text-3xl md:text-7xl gold-text-shimmer tracking-[0.4em] uppercase font-black drop-shadow-[0_0_30px_rgba(15,142,233,0.3)]">Guest Book</h2>
+                <div className="flex flex-col items-center justify-center gap-6 md:gap-8 mb-12 md:mb-16">
+                  <div className="wax-seal mb-4" />
+                  <Flower className="w-10 h-10 md:w-12 md:h-12 text-gold-400 animate-pulse" />
+                  <h2 className="font-display text-2xl md:text-5xl gold-text-shimmer tracking-[0.4em] uppercase font-black">Guest Book</h2>
                   <RoyalOrnament />
-                  <p className="font-serif text-gold-500 text-sm tracking-[0.3em] uppercase font-black -mt-6">Ucapan & Doa Restu</p>
+                  <p className="font-serif text-gold-500 text-xs tracking-[0.3em] uppercase font-black -mt-4">Ucapan & Doa Restu</p>
                 </div>
                 <p className="font-body text-lg md:text-2xl text-royal-text/70 mb-16 md:mb-20 italic">Berikan doa restu Anda untuk perjalanan suci kami</p>
                 
@@ -988,7 +988,7 @@ export default function App() {
                       </div>
                     </div>
                     <motion.button 
-                      whileHover={{ scale: 1.02, boxShadow: "0 0 30px rgba(15,142,233,0.3)" }}
+                      whileHover={{ scale: 1.02, boxShadow: "0 10px 30px rgba(212,175,55,0.2)" }}
                       whileTap={{ scale: 0.98 }}
                       onClick={handleSendWish}
                       disabled={isSending}
@@ -1056,16 +1056,16 @@ export default function App() {
                 viewport={{ once: true }}
                 className="max-w-5xl w-full relative z-10"
               >
-                <div className="text-center mb-20 md:mb-28">
-                  <Gift className="w-16 h-16 md:w-20 md:h-20 text-gold-400 mx-auto mb-10 md:mb-12 animate-bounce" />
-                  <h2 className="font-display text-4xl md:text-8xl gold-text-shimmer mb-10 md:mb-14 tracking-[0.4em] uppercase font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">Wedding Gift</h2>
+                <div className="text-center mb-20">
+                  <Gift className="w-12 h-12 text-gold-400 mx-auto mb-8 animate-bounce" />
+                  <h2 className="font-display text-4xl md:text-6xl gold-text-shimmer mb-8 tracking-[0.4em] uppercase font-black">Wedding Gift</h2>
                   <RoyalOrnament />
-                  <p className="font-body text-2xl md:text-3xl text-royal-text/70 max-w-4xl mx-auto italic mt-12 leading-relaxed">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui:</p>
+                  <p className="font-body text-2xl text-royal-text/70 max-w-3xl mx-auto italic mt-8">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun jika Anda ingin memberikan tanda kasih, dapat melalui:</p>
                 </div>
                 
                 <div className="grid sm:grid-cols-2 gap-10 max-w-4xl mx-auto">
                   {/* Dana */}
-                  <div className="p-12 glass-card royal-border shadow-[0_30px_60px_rgba(0,0,0,0.5)] relative group overflow-hidden">
+                  <div className="p-12 glass-card royal-border shadow-xl relative group overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-125" />
                     <div className="relative z-10">
                       <div className="h-8 mb-10 flex items-center font-display font-black text-gold-300 tracking-[0.3em] text-sm uppercase">E-Wallet</div>
@@ -1088,7 +1088,7 @@ export default function App() {
                   </div>
 
                   {/* Bank/Other */}
-                  <div className="p-12 glass-card royal-border shadow-[0_30px_60px_rgba(0,0,0,0.5)] relative group overflow-hidden">
+                  <div className="p-12 glass-card royal-border shadow-xl relative group overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gold-500/10 rounded-bl-full -mr-12 -mt-12 transition-transform group-hover:scale-125" />
                     <div className="relative z-10">
                       <div className="h-8 mb-10 flex items-center font-display font-black text-gold-300 tracking-[0.3em] text-sm uppercase">Kirim Kado</div>
@@ -1124,11 +1124,11 @@ export default function App() {
                 className="max-w-5xl text-center"
               >
                 <div className="wax-seal mx-auto mb-20 scale-150" />
-                <p className="font-body text-3xl md:text-5xl text-royal-text leading-relaxed italic mb-16 px-8 md:px-12 drop-shadow-[0_0_20px_rgba(15,142,233,0.2)]">
+                <p className="font-body text-3xl text-royal-text leading-relaxed italic mb-12 px-8">
                   "Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu isteri-isteri dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya diantaramu rasa kasih dan sayang."
                 </p>
                 <RoyalOrnament />
-                <p className="font-display text-gold-500 font-black tracking-[0.8em] uppercase text-base mt-16 drop-shadow-[0_0_10px_rgba(15,142,233,0.2)]">QS. Ar-Rum: 21</p>
+                <p className="font-display text-gold-500 font-black tracking-[0.6em] uppercase text-sm mt-12">QS. Ar-Rum: 21</p>
               </motion.div>
             </Section>
 
@@ -1139,9 +1139,9 @@ export default function App() {
                 <div className="mb-16">
                   <WeddingLogo size="lg" />
                 </div>
-                <h2 className="font-display text-6xl md:text-9xl gold-text-shimmer mb-14 tracking-[0.5em] uppercase font-black drop-shadow-[0_0_40px_rgba(15,142,233,0.4)]">Jarwal & Aulia</h2>
-                <div className="w-48 h-[1px] bg-gradient-to-r from-transparent via-gold-600 to-transparent mx-auto mb-16" />
-                <p className="font-sans text-gold-500 text-sm md:text-base tracking-[1em] uppercase font-black drop-shadow-[0_0_10px_rgba(15,142,233,0.2)]">Terima Kasih Atas Doa Restu Anda</p>
+                <h2 className="font-display text-5xl md:text-7xl gold-text-shimmer mb-10 tracking-[0.5em] uppercase font-black">Aulia & Jarwal</h2>
+                <div className="w-32 h-[1px] bg-gradient-to-r from-transparent via-gold-600 to-transparent mx-auto mb-12" />
+                <p className="font-sans text-gold-500 text-xs tracking-[0.8em] uppercase font-black">Terima Kasih Atas Doa Restu Anda</p>
                 <div className="mt-24 opacity-40">
                   <RoyalOrnament />
                 </div>

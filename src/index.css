@@ -8,33 +8,44 @@
   --font-body: "Cormorant Garamond", serif;
   --font-display: "Cinzel", serif;
   
-  --color-gold-50: #f0f7ff;
-  --color-gold-100: #e0effe;
-  --color-gold-200: #bae0fd;
-  --color-gold-300: #7cc8fb;
-  --color-gold-400: #38aaf7;
-  --color-gold-500: #0f8ee9;
-  --color-gold-600: #0270c7;
-  --color-gold-700: #0359a1;
-  --color-gold-800: #074c84;
-  --color-gold-900: #0c406e;
+  --color-gold-50: #fffbeb;
+  --color-gold-100: #fef3c7;
+  --color-gold-200: #fde68a;
+  --color-gold-300: #fcd34d;
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  --color-gold-600: #d97706;
+  --color-gold-700: #b45309;
+  --color-gold-800: #92400e;
+  --color-gold-900: #78350f;
 
-  --color-rosegold-50: #f5f8ff;
-  --color-rosegold-100: #ebf1ff;
-  --color-rosegold-200: #d6e3ff;
-  --color-rosegold-300: #adc6ff;
-  --color-rosegold-400: #85a9ff;
-  --color-rosegold-500: #5c8cff;
-  --color-rosegold-600: #336fff;
-  --color-rosegold-700: #0a52ff;
-  --color-rosegold-800: #0041e6;
-  --color-rosegold-900: #0036bf;
-  --color-rosegold-950: #00227a;
+  --color-royal-blue-50: #f0f7ff;
+  --color-royal-blue-100: #e0effe;
+  --color-royal-blue-200: #bae0fd;
+  --color-royal-blue-300: #7cc8fb;
+  --color-royal-blue-400: #38aaf7;
+  --color-royal-blue-500: #0f8ee9;
+  --color-royal-blue-600: #0270c7;
+  --color-royal-blue-700: #0359a1;
+  --color-royal-blue-800: #074c84;
+  --color-royal-blue-900: #0c406e;
 
-  --color-royal-bg: #000c1d;
-  --color-royal-navy: #001f3f;
-  --color-royal-emerald: #013220;
-  --color-royal-text: #f8f1e7;
+  --color-rosegold-50: #fff1f2;
+  --color-rosegold-100: #ffe4e6;
+  --color-rosegold-200: #fecdd3;
+  --color-rosegold-300: #fda4af;
+  --color-rosegold-400: #fb7185;
+  --color-rosegold-500: #f43f5e;
+  --color-rosegold-600: #e11d48;
+  --color-rosegold-700: #be123c;
+  --color-rosegold-800: #9f1239;
+  --color-rosegold-900: #881337;
+  --color-rosegold-950: #4c0519;
+
+  --color-royal-bg: #fdfbf7;
+  --color-royal-navy: #002366;
+  --color-royal-emerald: #004d40;
+  --color-royal-text: #2c2416;
 
   @keyframes shimmer {
     0% { background-position: -200% 0; }
@@ -45,14 +56,15 @@
 
 @layer base {
   body {
-    @apply bg-royal-bg text-royal-text font-sans selection:bg-gold-500 selection:text-royal-bg;
+    @apply bg-royal-bg text-royal-text font-sans selection:bg-gold-500/20 selection:text-royal-text;
     background-image: url('https://www.transparenttextures.com/patterns/royal-feather.png');
     background-attachment: fixed;
+    opacity: 0.98;
   }
 }
 
 .glass-card {
-  @apply bg-black/40 backdrop-blur-2xl border border-gold-500/30 shadow-[0_0_50px_rgba(0,0,0,0.5)];
+  @apply bg-white/90 backdrop-blur-xl border border-gold-200 shadow-[0_20px_50px_rgba(0,0,0,0.03)];
 }
 
 .royal-border {
