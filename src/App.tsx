@@ -646,7 +646,7 @@ export default function App() {
                         <p className="font-serif text-xl md:text-2xl text-royal-text font-bold mb-2 md:mb-3 italic">Minggu, 5 April 2026</p>
                         <div className="flex items-center justify-center gap-4 text-gold-400 font-black uppercase tracking-[0.4em] text-[10px]">
                           <Clock className="w-5 h-5" />
-                          <span>10.00 WITA - Selesai</span>
+                          <span>14.00 WITA - Selesai</span>
                         </div>
                       </div>
                     </div>
